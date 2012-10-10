@@ -27,12 +27,22 @@ class Game
 	end
 
 	def play_round
-		#get user to input 'move on' or 'ring bell'
-		puts "(M)ove on or (R)ing bell?"
+		#get user to pick house number
+		puts "Choose a house number between 1 and 10"
+		input = $stdin.gets.chomp.to_i
+
+		# confirm what house number they have chosen, lights on or off
+		if input >=1 || input <=10
+			puts "You have chosen house number #{input}. The lights are"
+		else puts "Invalid choice, try again"
+
+
+		# get user to input 'move on' or 'ring bell'
+		puts "Do you want to (M)ove on or (R)ing bell?"
 		player_choice = $stdin.gets.chomp.upcase
 
 		if (player_choice == "M")
-			##need to explain moving to new house and they must choose again
+			## need to explain moving to new house and they must choose again
 
 		elsif (user_choice !== "R")
 			puts "Invalid choice, try again"
