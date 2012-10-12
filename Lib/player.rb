@@ -28,7 +28,7 @@ class Player
 	
 	
 	
-	def take_sweets(sweets)
+	def take_sweets(sweets, new_sweets)
 		@sweets = @sweets + @new_sweets
 	end
 	

@@ -21,13 +21,15 @@ begin
 		choice = $stdin.gets.chomp
 		# unless user says quit, next loop to launch new game
 		next unless choice.upcase == "Q"
-		puts "Don't have nightmares! Mwah hah hah!"
+			puts "Don't have nightmares! Mwah hah hah!"
 		break
 	end
 	# handle and display error raised above
 	rescue ArgumentError => error
 		puts error.message
 end
+
+
 
 
 
