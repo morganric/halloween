@@ -59,7 +59,7 @@ class Game
 			
 		elsif input_bell =="N"
 		
-			@haunted_house.bell(input_bell)
+			puts "Do you want to throw an egg?"
 			
 		else
 			puts "Invalid choice, Y/N"
