@@ -15,9 +15,9 @@ class Game
 			House.new(1, true, true, "treat", 5),
 			House.new(2, true, true, "treat", 10),
 			House.new(3, true, true, "treat", 10),
-			House.new(4, true, true, "treat", 1),
+			House.new(4, true, true, "treat", 5),
 			House.new(5, true, true, "treat", 5),
-			House.new(6, false, true, "trick", 0),
+			House.new(6, false, true, "treat", 15),
 			House.new(7, false, true, "trick", 0),
 			House.new(8, false, false, "NA", 0),
 			House.new(9, false, false, "NA", 0),
@@ -51,7 +51,7 @@ class Game
 			ask_house
 			
 			# get ring bell input for this round and call bell method class instance
-			input_bell = $stdin.gets.chomp
+			input_bell = $stdin.gets.chomp.upcase
 			
 			if input_bell == "Y" 
 				
@@ -91,36 +91,57 @@ class Game
 
 	def ask_house
 		input = $stdin.gets.chomp
-		input = input.to_i
+		input = input.to_i - 1
 		
-		if input >= 1 && input <= 10
-
-			@haunted_house = @houses[input - 1]
-
-			puts "Welcome to number #{input} Spectre Street"
-			
-
-			if @haunted_house.lights == true
+		if @houses[input] == nil
 		
-				puts "The lights are on. Do you want to ring the bell? Y/N" 
-		
-			else
-		
-				puts "The lights are off. Do you want to ring the bell? Y/N" 
-		
-			end	
-
+		puts "You've already been to that house, choose another door number..."
+				
 		else
-			puts "Invalid choice, try again choose another number between 1 and 10"
+				
+			if input >= 0 && input <= 9
+	
+				@haunted_house = @houses[input]
+				haunted_house_number = input + 1
+				
+				# trying to handle repeat visits
+				@houses[input] = nil
+							
+				
+				puts "Welcome to number #{haunted_house_number} Spectre Street"
+				
+	
+				if @haunted_house.lightson == true
+			
+					puts "The lights are on. Do you want to ring the bell? Y/N" 
+			
+				else
+			
+					puts "The lights are off. Do you want to ring the bell? Y/N" 
+			
+				end	
+	
+			else
+				puts "Invalid choice, try again choose another number between 1 and 10"
+			end
 		end
+	
 	end
+	
+	
 
 	def someone_at_door
 		puts "Somebody comes to the door. Shout TRICK OR TREAT!!"
+		sleep 1   
+		print "."
+		sleep 1
+		print ".."
 
 		if @haunted_house.trick_or_treat == "treat"
-			puts "Treat. Here's #{@new_sweets} sweets. Which house next?"
-			add_sweets
+			more_sweets = @haunted_house.new_sweets
+			puts "Treat. Here's #{more_sweets} sweets. Which house next?"
+			sleep 1
+			add_sweets(more_sweets)
 			display_score
 	
 		else	
@@ -135,18 +156,25 @@ class Game
 		
 		if input_throw == "Y" 
 			@character.eggs = @character.eggs - 1
-			puts "SPLAT!!!"
-			display_score
+			
+			if @character.eggs > 0
+				puts "SPLAT!!!"
+				display_score
+			elsif
+			puts "no more eggs left. GAME OVER?"
+			end
 			
 		end
 	end
 	
-	def add_sweets(sweets, new_sweets)
-		@character.sweets = @character.sweets + @haunted_house.new_sweets
+	def add_sweets(more_sweets)
+		@character.sweets = @character.sweets + more_sweets
 	end
 	
 	def display_score
-		puts "#{@character.eggs} Eggs left, #{@character.sweets} Sweets so far!"
+		current_eggs = @character.eggs
+		current_sweets = @character.sweets
+		puts "#{current_eggs} Eggs left, #{current_sweets} Sweets so far!"
 	end
 
 	# def play_round

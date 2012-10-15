@@ -15,22 +15,6 @@ class Player
 	 
  	end
 	
-	
-	
-	def throw_egg(number)
-		if @egg > 0
-			@egg = @egg - number
-			puts "Splat"
-		elsif
-			puts "No more eggs left"
-		end 
-	end
-	
-	
-	
-	def take_sweets(sweets, new_sweets)
-		@sweets = @sweets + @new_sweets
-	end
-	
+		
 
 end
