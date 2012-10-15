@@ -33,8 +33,6 @@ class Game
 		@game_over = false
 		@game_over_reason = ""
 
-		# initiate game play
-		play_game
 	end
 
 	
@@ -46,83 +44,98 @@ class Game
 		
 		puts "Which house number do you want to trick or treat first? 1 to 10"
 		
-		# get house number for this round and create house class instance
+
+		loop do
+			# get house number for this round and create house class instance
+			ask_house
+			
+			# get ring bell input for this round and call bell method class instance
+			input_bell = $stdin.gets.chomp
+			
+			if input_bell == "Y" 
+				
+				if @haunted_house.athome == true
+					someone_at_door
+				else
+					puts "Nobody comes, do you want to throw an egg?"
+					throw_egg
+				end	
+				
+			elsif input_bell =="N"
+				puts "Do you want to throw an egg?"
+				throw_egg
+			else
+				puts "Invalid choice, Y/N"
+			end
+			
+			
+			puts "Okay, which house next?"
+
+		end
+
+
+	end
+
+	def ask_house
 		input = $stdin.gets.chomp
 		input = input.to_i
 		
-		
-		
 		if input >= 1 && input <= 10
-			
-			@haunted_house = @houses[input]
+
+			@haunted_house = @houses[input - 1]
+
 			puts "Welcome to number #{input} Spectre Street"
-			@haunted_house.lights(input)
 			
+
+			if @haunted_house.lights == true
+		
+				puts "The lights are on. Do you want to ring the bell? Y/N" 
+		
+			else
+		
+				puts "The lights are off. Do you want to ring the bell? Y/N" 
+		
+			end	
+
 		else
 			puts "Invalid choice, try again choose another number between 1 and 10"
 		end
-		
-		
-		# get ring bell input for this round and call bell method class instance
-		input_bell = $stdin.gets.chomp
-		
-		if input_bell == "Y" 
-			
-			@haunted_house.bell(input_bell)
-			
-		elsif input_bell =="N"
-		
-			puts "Do you want to throw an egg?"
-			
-		else
-			puts "Invalid choice, Y/N"
-		end
-		
-		
+	end
+
+	def someone_at_door
+		puts "Somebody comes to the door. Shout TRICK OR TREAT!!"
+
+		if @haunted_house.trick_or_treat == "treat"
+			puts "Treat. Here's #{@new_sweets} sweets. Which house next?"
+	
+		else	
+			puts "No answer, do you want to throw an egg?"
+			throw_egg
+		end	
+	end
+
+	def throw_egg
 		# no reply, throw egg response?
 		input_throw = $stdin.gets.chomp
 		
 		if input_throw == "Y" 
-			
 			@character.eggs = @character.eggs - 1
-			puts "SPLAT!!! Which house next?"
-			
-		elsif input_trick =="N"
-		
-			puts "Okay, which house next?"
-			
-		else
-			puts "Invalid choice, Y/N"
+			puts "SPLAT!!!"
 		end
-
-
 	end
 
-	def play_round
-		#get user to pick house number
-		puts "Choose a house number between 1 and 10"
-		input = $stdin.gets.chomp.to_i
+	# def play_round
+	# 	#get user to pick house number
+	# 	puts "Choose a house number between 1 and 10"
+	# 	input = $stdin.gets.chomp.to_i
 
-		# confirm what house number they have chosen, lights on or off
-		if input >= 1 || input <= 10
-			puts "You have chosen house number #{input}. The lights are"
-		else puts "Invalid choice, try again"
-		end
-
-
-		# get user to input 'move on' or 'ring bell'
-		puts "Do you want to (M)ove on or (R)ing bell?"
-		player_choice = $stdin.gets.chomp.upcase
-
-		if (player_choice == "M")
-			## need to explain moving to new house and they must choose again
-
-		elsif (user_choice != "R")
-			puts "Invalid choice, try again"
-			play_round	
-		end
+	# 	# confirm what house number they have chosen, lights on or off
+	# 	if input >= 1 || input <= 10
+	# 		puts "You have chosen house number #{input}. The lights are"
+	# 	else puts "Invalid choice, try again"
+	# 	end
 			
-	end
+	# end
 
 end
 

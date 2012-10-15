@@ -16,6 +16,8 @@ begin
 	loop do
 		# bootstrap game launch by creating new game object
 		game = Game.new(name)
+
+		game.play_game
 		# when Game::play_game ends, ask if user wants to quit or continue
 		puts "\n(Q)uit or (C)ontinue?"
 		choice = $stdin.gets.chomp
