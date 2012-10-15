@@ -14,6 +14,7 @@ class Game
 		@houses = [
 			House.new(1, true, true, "treat", 5),
 			House.new(2, true, true, "treat", 10),
+			House.new(3, true, true, "treat", 10),
 			House.new(4, true, true, "treat", 1),
 			House.new(5, true, true, "treat", 5),
 			House.new(6, false, true, "trick", 0),
@@ -69,6 +70,18 @@ class Game
 			end
 			
 			
+			
+			puts "\n(Q)uit or (C)ontinue?"
+			choice = $stdin.gets.chomp
+			# unless user says quit, next loop to launch new game
+			if choice.upcase == "Q"
+				puts "Bai!"
+				break
+			end
+ 
+
+			
+			
 			puts "Okay, which house next?"
 
 		end
@@ -107,6 +120,8 @@ class Game
 
 		if @haunted_house.trick_or_treat == "treat"
 			puts "Treat. Here's #{@new_sweets} sweets. Which house next?"
+			add_sweets
+			display_score
 	
 		else	
 			puts "No answer, do you want to throw an egg?"
@@ -121,7 +136,17 @@ class Game
 		if input_throw == "Y" 
 			@character.eggs = @character.eggs - 1
 			puts "SPLAT!!!"
+			display_score
+			
 		end
+	end
+	
+	def add_sweets(sweets, new_sweets)
+		@character.sweets = @character.sweets + @haunted_house.new_sweets
+	end
+	
+	def display_score
+		puts "#{@character.eggs} Eggs left, #{@character.sweets} Sweets so far!"
 	end
 
 	# def play_round
