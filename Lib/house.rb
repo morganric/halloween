@@ -41,7 +41,7 @@ class House
 			puts "Somebody comes to the door. Shout TRICK OR TREAT!!"
 				if @trick_or_treat == "treat"
 			
-					puts "Treat. Here's #{@new_sweets} sweets."
+					puts "Treat. Here's #{@new_sweets} sweets. Which house next?"
 					
 					else
 					

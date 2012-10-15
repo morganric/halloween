@@ -2,17 +2,28 @@
 require "lib/house"
 require "lib/player"
 
-HOUSES = {
-		1=>"Clubs",
-		2=>"Diamonds",
-		3=>"Hearts",
-		4	=>"Spades"
-	}
 
+	
 class Game
+	
+	attr_accessor :houses
 	
 	# assign default user name if no name passed from command line
 	def initialize(name)		
+
+		@houses = [
+			House.new(1, true, true, "treat", 5),
+			House.new(2, true, true, "treat", 10),
+			House.new(4, true, true, "treat", 1),
+			House.new(5, true, true, "treat", 5),
+			House.new(6, false, true, "trick", 0),
+			House.new(7, false, true, "trick", 0),
+			House.new(8, false, false, "NA", 0),
+			House.new(9, false, false, "NA", 0),
+			House.new(10, false, false, "NA", 0)
+			]
+		
+# @houses[current_house].house_number 		
 
 		# create player setting their name, passing them a reference
 		# to the shared deck, and setting their hand size
@@ -39,9 +50,11 @@ class Game
 		input = $stdin.gets.chomp
 		input = input.to_i
 		
+		
+		
 		if input >= 1 && input <= 10
 			
-			@haunted_house = House.new(input, true, true, "treat", 5)
+			@haunted_house = @houses[input]
 			puts "Welcome to number #{input} Spectre Street"
 			@haunted_house.lights(input)
 			
@@ -72,10 +85,11 @@ class Game
 		if input_throw == "Y" 
 			
 			@character.eggs = @character.eggs - 1
+			puts "SPLAT!!! Which house next?"
 			
 		elsif input_trick =="N"
 		
-			puts "Move to next house"
+			puts "Okay, which house next?"
 			
 		else
 			puts "Invalid choice, Y/N"
