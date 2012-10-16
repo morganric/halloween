@@ -1,3 +1,21 @@
+# Project demonstrates
+# - local and instance variables - DONE
+# - arrays, hashes, and custom object type(s) - DONE apart from Custom???
+# - logical conditions - DONE
+# - branching via both if/elsif/else and case/when
+# - classes and object instantiation
+# - attr_accessor - DONE
+# - instance methods - DONE
+# - module mixin to class - ???
+# - array - DONE
+# - hash - DONE
+# - command line input - DONE 
+# - command line display - DONE
+# - string interpolation - ???
+# - comments - DONE
+#
+
+
 # USAGE: ruby halloween.rb "User Name"
 
 # add current directory to Ruby LOAD_PATH
