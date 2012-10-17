@@ -8,6 +8,7 @@ class Game
 	
 	attr_accessor :houses
 	attr_accessor :character
+	attr_accessor :houses_visited
 	
 	# assign default user name if no name passed from command line
 	def initialize(name)		
@@ -24,6 +25,8 @@ class Game
 			House.new(9, false, false, "NA", 0),
 			House.new(10, false, false, "NA", 0)
 			]
+			
+		@houses_visited = 0
 		
 # @houses[current_house].house_number 		
 
@@ -79,9 +82,16 @@ class Game
 				break
 			end
 
+			@houses_visited += 1
 			
-			puts "Okay, which house next?"
-
+			if @houses_visited >= 10 
+				puts "GAME OVER!"
+				display_score
+				break	
+			else
+				puts "Okay, which house next?"
+			end
+		
 		end
 
 
@@ -91,21 +101,16 @@ class Game
 		input = $stdin.gets.chomp
 		input = input.to_i - 1
 		
-		if @houses[input] == nil
-		
-		puts "You've already been to that house, choose another door number..."
-		ask_house
-		
-				
-		else
 				
 			if input >= 0 && input <= 9	
 	
 				@haunted_house = @houses[input]
+				haunted_house_number =  @haunted_house.house_number
 				
 				if @haunted_house.visits > 0
 				# trying to handle repeat visits
 					puts "you've been here"
+					ask_house
 				else
 					@haunted_house.visits += 1
 				end
@@ -128,7 +133,7 @@ class Game
 			else
 				puts "Invalid choice, try again choose another number between 1 and 10"
 			end
-		end
+		
 	
 	end
 	
@@ -178,7 +183,7 @@ class Game
 	def display_score
 		current_eggs = @character.eggs
 		current_sweets = @character.sweets
-		puts "#{current_eggs} Eggs left, #{current_sweets} Sweets so far!"
+		puts "#{current_eggs} Eggs, #{current_sweets} Sweets!"
 	end
 
 	# def play_round
