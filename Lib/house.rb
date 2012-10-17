@@ -6,6 +6,7 @@ class House
 	attr_accessor :athome
 	attr_accessor :trick_or_treat
 	attr_accessor :new_sweets
+	attr_accessor :visits
 	
 	# initialize house attributes
 	def initialize(house_number, lightson, athome, trick_or_treat, new_sweets)
@@ -15,7 +16,7 @@ class House
 		@new_sweets = new_sweets
 		@house_number = house_number
 		
-	
+		@visits = 0
 	end
 	
 	

@@ -7,6 +7,7 @@ require "lib/player"
 class Game
 	
 	attr_accessor :houses
+	attr_accessor :character
 	
 	# assign default user name if no name passed from command line
 	def initialize(name)		
@@ -68,8 +69,7 @@ class Game
 			else
 				puts "Invalid choice, Y/N"
 			end
-			
-			
+
 			
 			puts "\n(Q)uit or (C)ontinue?"
 			choice = $stdin.gets.chomp
@@ -78,9 +78,7 @@ class Game
 				puts "Bai!"
 				break
 			end
- 
 
-			
 			
 			puts "Okay, which house next?"
 
@@ -96,17 +94,23 @@ class Game
 		if @houses[input] == nil
 		
 		puts "You've already been to that house, choose another door number..."
+		ask_house
+		
 				
 		else
 				
-			if input >= 0 && input <= 9
+			if input >= 0 && input <= 9	
 	
 				@haunted_house = @houses[input]
-				haunted_house_number = input + 1
 				
+				if @haunted_house.visits > 0
 				# trying to handle repeat visits
-				@houses[input] = nil
-							
+					puts "you've been here"
+				else
+					@haunted_house.visits += 1
+				end
+
+								
 				
 				puts "Welcome to number #{haunted_house_number} Spectre Street"
 				
