@@ -9,12 +9,13 @@ class House
 	attr_accessor :visits
 	
 	# initialize house attributes
-	def initialize(house_number, lightson, athome, trick_or_treat, new_sweets)
-		@lightson = lightson
-		@athome = athome
-		@trick_or_treat = trick_or_treat
-		@new_sweets = new_sweets
+	def initialize(house_number, lightson, trick_or_treat)
 		@house_number = house_number
+		@lightson = lightson
+		@athome = [true, false].shuffle[0]
+		@trick_or_treat = trick_or_treat
+		@new_sweets = rand(10)
+		
 		
 		@visits = 0
 	end

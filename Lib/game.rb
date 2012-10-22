@@ -14,16 +14,16 @@ class Game
 	def initialize(name)		
 
 		@houses = [
-			House.new(1, true, true, "treat", 5),
-			House.new(2, true, true, "treat", 10),
-			House.new(3, true, true, "treat", 10),
-			House.new(4, true, true, "treat", 5),
-			House.new(5, true, true, "treat", 5),
-			House.new(6, false, true, "treat", 15),
-			House.new(7, false, true, "trick", 0),
-			House.new(8, false, false, "NA", 0),
-			House.new(9, false, false, "NA", 0),
-			House.new(10, false, false, "NA", 0)
+			House.new(1, true, "treat"),
+			House.new(2, true, "treat"),
+			House.new(3, true, "treat"),
+			House.new(4, true, "treat"),
+			House.new(5, true, "treat"),
+			House.new(6, true, "treat"),
+			House.new(7, true, "trick"),
+			House.new(8, false, "NA"),
+			House.new(9, false, "NA"),
+			House.new(10, false, "NA")
 			]
 			
 		@houses_visited = 0
@@ -40,13 +40,22 @@ class Game
 
 	end
 
+	def display_score
+		current_eggs = @character.eggs
+		current_sweets = @character.sweets
+		puts "\n SCORE: #{current_eggs} Eggs, #{current_sweets} Sweets!"
+	end
+
 	
 	def play_game
 		# display game startup message, including player name
 		puts "Happy Halloween #{@character.name}. \n
-		Do you dare to 'trick or treat' your weird neighbours? Your mission, if you're feeling brave, is to collect 10 sweets. \n
+		Do you dare to 'trick or treat' your weird neighbours? Your mission, if you're feeling brave. \n
 		If your neighbours choose 'trick' rather than give you a treat, you can egg them, but careful not to run out of tricks, or it's game over!"
 		
+		puts"You begin with"
+		display_score
+
 		puts "Which house number do you want to trick or treat first? 1 to 10"
 		
 
@@ -157,7 +166,7 @@ class Game
 			display_score
 	
 		else	
-			puts "No answer, do you want to throw an egg?"
+			puts "Trick! Do you want to throw an egg?"
 			throw_egg
 		end	
 	end
@@ -183,11 +192,7 @@ class Game
 		@character.sweets = @character.sweets + more_sweets
 	end
 	
-	def display_score
-		current_eggs = @character.eggs
-		current_sweets = @character.sweets
-		puts "\n SCORE: #{current_eggs} Eggs, #{current_sweets} Sweets!"
-	end
+	
 
 	# def play_round
 	# 	#get user to pick house number

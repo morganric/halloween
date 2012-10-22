@@ -8,7 +8,7 @@ class Player
 	def initialize(name, eggs, sweets)
 	 	# initialize accessors
 	 	@name = name
-	 	@eggs = 12
+	 	@eggs = 6
 	 	@sweets = 0
 	 
  	end
