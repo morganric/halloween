@@ -144,7 +144,10 @@ class Game
 		sleep 1   
 		print "."
 		sleep 1
-		print ".."
+		print "."
+		sleep 1
+		print "."
+		sleep 1
 
 		if @haunted_house.trick_or_treat == "treat"
 			more_sweets = @haunted_house.new_sweets
@@ -183,7 +186,7 @@ class Game
 	def display_score
 		current_eggs = @character.eggs
 		current_sweets = @character.sweets
-		puts "SCORE: #{current_eggs} Eggs, #{current_sweets} Sweets!"
+		puts "\n SCORE: #{current_eggs} Eggs, #{current_sweets} Sweets!"
 	end
 
 	# def play_round
