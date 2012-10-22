@@ -32,7 +32,7 @@ class Game
 
 		# create player setting their name, passing them a reference
 		# to the shared deck, and setting their hand size
-		@character = Player.new(name, @costume , @eggs , @sweets)
+		@character = Player.new(name , @eggs , @sweets)
 
 		# set game state flag and reason string
 		@game_over = false
@@ -75,7 +75,7 @@ class Game
 
 			
 			puts "\n(Q)uit or (C)ontinue?"
-			choice = $stdin.gets.chomp
+			choice = $stdin.gets.chomp.upcase
 			# unless user says quit, next loop to launch new game
 			if choice.upcase == "Q"
 				puts "Bai!"
@@ -148,7 +148,7 @@ class Game
 
 		if @haunted_house.trick_or_treat == "treat"
 			more_sweets = @haunted_house.new_sweets
-			puts "Treat. Here's #{more_sweets} sweets. Which house next?"
+			puts "Treat. Here's #{more_sweets} sweets."
 			sleep 1
 			add_sweets(more_sweets)
 			display_score
@@ -161,7 +161,7 @@ class Game
 
 	def throw_egg
 		# no reply, throw egg response?
-		input_throw = $stdin.gets.chomp
+		input_throw = $stdin.gets.chomp.upcase
 		
 		if input_throw == "Y" 
 			@character.eggs = @character.eggs - 1
@@ -183,7 +183,7 @@ class Game
 	def display_score
 		current_eggs = @character.eggs
 		current_sweets = @character.sweets
-		puts "#{current_eggs} Eggs, #{current_sweets} Sweets!"
+		puts "SCORE: #{current_eggs} Eggs, #{current_sweets} Sweets!"
 	end
 
 	# def play_round
