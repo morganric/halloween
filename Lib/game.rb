@@ -118,13 +118,13 @@ class Game
 				
 				if @haunted_house.visits > 0
 				# trying to handle repeat visits
-					puts "you've been here"
+					puts "You've been here, so which house next?"
 					ask_house
+					return
 				else
 					@haunted_house.visits += 1
 				end
-
-								
+					
 				
 				puts "Welcome to number #{haunted_house_number} Spectre Street"
 				
